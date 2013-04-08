@@ -16,6 +16,12 @@ import com.vaadin.shared.ui.Connect;
 public class DisableOnClickButtonConnector extends AbstractExtensionConnector {
 
 	@Override
+	public DisableOnClickButtonSharedState getState() {
+
+		return (DisableOnClickButtonSharedState) super.getState();
+	}
+
+	@Override
 	protected void extend(ServerConnector target) {
 
 		final VButton button = (VButton) ((ComponentConnector) target).getWidget();
@@ -27,7 +33,7 @@ public class DisableOnClickButtonConnector extends AbstractExtensionConnector {
 
 				button.setEnabled(false);
 				button.addStyleName(DISABLED_CLASSNAME);
-				button.setText("Please wait...");
+				button.setText(getState().getDisabledLabel());
 			}
 		});
 	}

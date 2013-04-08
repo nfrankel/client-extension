@@ -12,9 +12,11 @@ public class DisableOnClickButtonExtensionUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 
+		String disabledLabel = request.getParameter("label");
+
 		Button button = new Button("Submit");
 
-		new DisableOnClickButtonExtension().extend(button);
+		new DisableOnClickButtonExtension(disabledLabel == null ? "Please wait..." : disabledLabel).extend(button);
 
 		setContent(button);
 	}
